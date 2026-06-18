@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Spliq — Do it together</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"/>
+<style>
+:root{
+  --maroon:#6C1F5A;
+  --dark:#3B0E2E;
+  --deeper:#260A1E;
+  --gold:#F4C430;
+  --pink:#E9BAD8;
+  --green:#7EE3A8;
+  --red:#FF8080;
+  --white:#FFFFFF;
+  --text-muted:rgba(233,186,216,0.75);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--deeper);color:var(--white);overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;background:rgba(38,10,30,0.85);backdrop-filter:blur(16px);border-bottom:0.5px solid rgba(255,255,255,0.07)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1200px;margin:0 auto}
+.nav-logo{font-size:20px;font-weight:900;letter-spacing:2px;color:var(--white)}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:14px;color:var(--pink);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--gold);color:var(--dark);border:none;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .2s}
+.nav-cta:hover{opacity:0.88}
+.nav-mobile-btn{display:none;background:none;border:none;color:var(--white);font-size:24px;cursor:pointer}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:100px 5% 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(108,31,90,0.35) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(244,196,48,0.08) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center;width:100%}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(244,196,48,0.1);border:0.5px solid rgba(244,196,48,0.25);border-radius:20px;padding:6px 14px;font-size:12px;color:var(--gold);font-weight:500;margin-bottom:24px;letter-spacing:0.3px}
+.hero-eyebrow i{font-size:13px}
+.hero-h1{font-size:clamp(42px,6vw,72px);font-weight:900;line-height:1.05;letter-spacing:-2px;margin-bottom:8px}
+.hero-h1 .accent{color:var(--gold)}
+.hero-tagline{font-size:clamp(28px,4vw,48px);font-weight:900;line-height:1.05;letter-spacing:-1.5px;color:var(--pink);margin-bottom:24px}
+.hero-sub{font-size:17px;color:var(--text-muted);line-height:1.7;max-width:500px;margin-bottom:36px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.btn-primary{background:var(--gold);color:var(--dark);border:none;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.btn-primary:hover{opacity:0.9;transform:translateY(-1px)}
+.btn-secondary{background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.18);color:var(--white);padding:14px 28px;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.btn-secondary:hover{background:rgba(255,255,255,0.12)}
+.hero-proof{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.proof-avatars{display:flex}
+.proof-av{width:32px;height:32px;border-radius:50%;background:var(--maroon);border:2px solid var(--deeper);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--pink);font-weight:600;margin-left:-8px}
+.proof-av:first-child{margin-left:0}
+.proof-text{font-size:13px;color:var(--text-muted)}
+.proof-text strong{color:var(--white)}
+
+/* ── PHONE MOCKUP ── */
+.phone-wrap{position:relative;display:flex;justify-content:center}
+.phone-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(108,31,90,0.5) 0%,transparent 70%);pointer-events:none}
+.phone{width:260px;height:520px;background:var(--dark);border-radius:40px;border:7px solid #120208;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.5);position:relative;z-index:1}
+.phone-screen{padding:20px 16px;height:100%;display:flex;flex-direction:column}
+.p-sb{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.p-sb-t{font-size:10px;font-weight:600;color:rgba(255,255,255,0.6)}
+.p-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.p-logo{font-size:14px;font-weight:900;letter-spacing:1px}
+.p-av{width:30px;height:30px;border-radius:50%;background:var(--maroon);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--pink);font-weight:600}
+.p-wallet{background:#4A1040;border-radius:14px;padding:14px;margin-bottom:12px}
+.p-wallet-label{font-size:9px;color:var(--pink);margin-bottom:4px;letter-spacing:0.5px}
+.p-wallet-bal{font-size:22px;font-weight:700;color:var(--white);margin-bottom:12px}
+.p-quick{display:flex;justify-content:space-between}
+.p-qb{display:flex;flex-direction:column;align-items:center;gap:4px}
+.p-qb-icon{width:28px;height:28px;border-radius:8px;background:rgba(244,196,48,0.15);display:flex;align-items:center;justify-content:center}
+.p-qb-icon i{font-size:13px;color:var(--gold)}
+.p-qb span{font-size:8px;color:var(--pink)}
+.p-sect{font-size:9px;color:var(--pink);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px}
+.p-goal{background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.11);border-radius:12px;padding:10px;margin-bottom:8px}
+.p-goal-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.p-goal-name{font-size:11px;font-weight:600;color:var(--white)}
+.p-goal-badge{font-size:9px;font-weight:500;padding:2px 7px;border-radius:5px}
+.badge-gold{background:rgba(244,196,48,0.2);border:0.5px solid rgba(244,196,48,0.35);color:var(--gold)}
+.badge-green{background:rgba(126,227,168,0.2);border:0.5px solid rgba(126,227,168,0.35);color:var(--green)}
+.p-prog{height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin-bottom:5px}
+.p-prog-fill{height:100%;border-radius:2px;background:var(--gold);transition:width 1.5s ease}
+.p-prog-fill.green{background:var(--green)}
+.p-prog-meta{display:flex;justify-content:space-between}
+.p-prog-meta span{font-size:9px;color:var(--pink)}
+.p-avatars{display:flex}
+.p-pav{width:16px;height:16px;border-radius:50%;background:var(--maroon);border:1.5px solid var(--dark);display:flex;align-items:center;justify-content:center;font-size:6px;color:var(--pink);font-weight:600;margin-left:-4px}
+.p-pav:first-child{margin-left:0}
+
+/* animated contribution notification */
+.p-notif{position:absolute;bottom:60px;left:10px;right:10px;background:rgba(26,122,74,0.2);border:0.5px solid rgba(126,227,168,0.3);border-radius:10px;padding:9px 12px;display:flex;align-items:center;gap:8px;opacity:0;transform:translateY(10px);transition:all .5s ease;z-index:10}
+.p-notif.show{opacity:1;transform:translateY(0)}
+.p-notif-icon{width:24px;height:24px;border-radius:7px;background:rgba(126,227,168,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.p-notif-icon i{font-size:12px;color:var(--green)}
+.p-notif-text{font-size:10px;color:var(--white);line-height:1.4}
+.p-notif-text strong{color:var(--green)}
+
+/* ── TICKER ── */
+.ticker{background:var(--gold);padding:12px 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-flex;animation:ticker 25s linear infinite}
+.ticker-item{font-size:13px;font-weight:700;color:var(--dark);padding:0 32px;display:flex;align-items:center;gap:10px}
+.ticker-dot{width:5px;height:5px;border-radius:50%;background:var(--dark);opacity:0.4}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── SECTION BASE ── */
+section{padding:96px 5%}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-eyebrow{font-size:12px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px}
+.section-h2{font-size:clamp(32px,4vw,52px);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:16px}
+.section-sub{font-size:17px;color:var(--text-muted);line-height:1.7;max-width:560px}
+
+/* ── PILLARS ── */
+.pillars{background:var(--dark)}
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.08);margin-top:60px;border-radius:20px;overflow:hidden}
+.pillar{background:var(--dark);padding:40px 36px;position:relative;transition:background .3s}
+.pillar:hover{background:#4A1040}
+.pillar-num{font-size:48px;font-weight:900;color:rgba(244,196,48,0.12);letter-spacing:-2px;line-height:1;margin-bottom:20px}
+.pillar-icon{width:48px;height:48px;border-radius:14px;background:rgba(244,196,48,0.1);border:0.5px solid rgba(244,196,48,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.pillar-icon i{font-size:22px;color:var(--gold)}
+.pillar-title{font-size:22px;font-weight:800;color:var(--white);margin-bottom:10px;letter-spacing:-0.5px}
+.pillar-text{font-size:14px;color:var(--text-muted);line-height:1.7}
+
+/* ── HOW IT WORKS ── */
+.how{background:var(--deeper)}
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px}
+.steps{display:flex;flex-direction:column;gap:0}
+.step{display:flex;gap:20px;padding:24px 0;border-bottom:0.5px solid rgba(255,255,255,0.07);position:relative;cursor:pointer}
+.step:last-child{border-bottom:none}
+.step-num{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--pink);flex-shrink:0;transition:all .3s}
+.step.active .step-num{background:var(--gold);border-color:var(--gold);color:var(--dark)}
+.step-content{flex:1}
+.step-title{font-size:16px;font-weight:700;color:var(--white);margin-bottom:6px;transition:color .3s}
+.step-text{font-size:13px;color:var(--text-muted);line-height:1.6;max-height:0;overflow:hidden;transition:max-height .4s ease,opacity .4s ease;opacity:0}
+.step.active .step-text{max-height:100px;opacity:1}
+.how-visual{position:relative}
+.how-phone{width:280px;margin:0 auto;display:block}
+.how-screens{position:relative;width:280px;height:500px;margin:0 auto}
+.how-screen{position:absolute;inset:0;background:var(--dark);border-radius:36px;border:7px solid #120208;overflow:hidden;padding:20px 16px;opacity:0;transform:translateY(20px);transition:all .5s ease;pointer-events:none}
+.how-screen.active{opacity:1;transform:translateY(0)}
+
+/* ── USE CASES ── */
+.usecases{background:var(--dark)}
+.uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+.uc-card{background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.09);border-radius:18px;padding:28px;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
+.uc-card::before{content:'';position:absolute;inset:0;background:rgba(108,31,90,0.15);opacity:0;transition:opacity .3s}
+.uc-card:hover::before{opacity:1}
+.uc-card:hover{border-color:rgba(108,31,90,0.4);transform:translateY(-4px)}
+.uc-emoji{font-size:32px;margin-bottom:16px;display:block}
+.uc-title{font-size:18px;font-weight:800;color:var(--white);margin-bottom:8px;letter-spacing:-0.3px}
+.uc-text{font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:16px}
+.uc-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(244,196,48,0.1);border:0.5px solid rgba(244,196,48,0.2);border-radius:20px;padding:4px 10px;font-size:11px;color:var(--gold)}
+
+/* ── FEATURES ── */
+.features{background:var(--deeper)}
+.features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;margin-top:56px}
+.feat{background:var(--deeper);padding:36px;transition:background .3s}
+.feat:hover{background:#1A0614}
+.feat-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.feat-icon i{font-size:20px}
+.feat-icon.gold{background:rgba(244,196,48,0.12);border:0.5px solid rgba(244,196,48,0.2)}
+.feat-icon.gold i{color:var(--gold)}
+.feat-icon.green{background:rgba(126,227,168,0.12);border:0.5px solid rgba(126,227,168,0.2)}
+.feat-icon.green i{color:var(--green)}
+.feat-icon.pink{background:rgba(233,186,216,0.12);border:0.5px solid rgba(233,186,216,0.2)}
+.feat-icon.pink i{color:var(--pink)}
+.feat-icon.maroon{background:rgba(108,31,90,0.25);border:0.5px solid rgba(108,31,90,0.4)}
+.feat-icon.maroon i{color:#D4A0C8}
+.feat-title{font-size:18px;font-weight:800;color:var(--white);margin-bottom:8px;letter-spacing:-0.3px}
+.feat-text{font-size:13px;color:var(--text-muted);line-height:1.7}
+
+/* ── SOCIAL PROOF ── */
+.proof{background:var(--dark)}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;margin:56px 0}
+.stat{background:var(--dark);padding:36px;text-align:center}
+.stat-num{font-size:clamp(32px,4vw,48px);font-weight:900;color:var(--gold);letter-spacing:-2px;margin-bottom:6px}
+.stat-label{font-size:13px;color:var(--text-muted)}
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tcard{background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.09);border-radius:16px;padding:24px}
+.tcard-text{font-size:14px;color:var(--white);line-height:1.7;margin-bottom:20px;font-style:italic}
+.tcard-author{display:flex;align-items:center;gap:10px}
+.tcard-av{width:36px;height:36px;border-radius:50%;background:var(--maroon);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--pink);font-weight:600}
+.tcard-name{font-size:13px;font-weight:600;color:var(--white)}
+.tcard-role{font-size:11px;color:var(--text-muted)}
+
+/* ── PAYMENT ARCH ── */
+.arch{background:var(--deeper)}
+.arch-flow{display:flex;align-items:center;justify-content:center;gap:0;margin-top:60px;flex-wrap:wrap}
+.arch-node{text-align:center;padding:24px 20px}
+.arch-icon{width:60px;height:60px;border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.arch-icon i{font-size:26px}
+.arch-icon.user{background:rgba(108,31,90,0.3);border:0.5px solid rgba(108,31,90,0.5)}
+.arch-icon.user i{color:#D4A0C8}
+.arch-icon.wallet{background:rgba(244,196,48,0.12);border:0.5px solid rgba(244,196,48,0.25)}
+.arch-icon.wallet i{color:var(--gold)}
+.arch-icon.escrow{background:rgba(74,144,217,0.12);border:0.5px solid rgba(74,144,217,0.25)}
+.arch-icon.escrow i{color:#4A90D9}
+.arch-icon.merchant{background:rgba(126,227,168,0.12);border:0.5px solid rgba(126,227,168,0.25)}
+.arch-icon.merchant i{color:var(--green)}
+.arch-label{font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px}
+.arch-sub{font-size:11px;color:var(--text-muted)}
+.arch-arrow{display:flex;flex-direction:column;align-items:center;gap:4px;padding:0 8px}
+.arch-arrow-line{width:40px;height:2px;background:rgba(255,255,255,0.1);position:relative}
+.arch-arrow-line::after{content:'▶';position:absolute;right:-6px;top:-7px;font-size:12px;color:rgba(255,255,255,0.2)}
+.arch-arrow-label{font-size:9px;color:var(--text-muted);white-space:nowrap}
+.arch-note{background:rgba(244,196,48,0.06);border:0.5px solid rgba(244,196,48,0.15);border-radius:14px;padding:20px 28px;text-align:center;max-width:560px;margin:36px auto 0;font-size:13px;color:var(--text-muted);line-height:1.6}
+.arch-note strong{color:var(--gold)}
+
+/* ── CTA ── */
+.cta-section{background:var(--maroon);padding:96px 5%;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(244,196,48,0.12) 0%,transparent 70%);pointer-events:none}
+.cta-h2{font-size:clamp(36px,5vw,64px);font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:16px}
+.cta-sub{font-size:17px;color:rgba(233,186,216,0.8);margin-bottom:40px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.6}
+.cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.cta-note{font-size:12px;color:rgba(233,186,216,0.5)}
+
+/* ── FOOTER ── */
+footer{background:var(--deeper);border-top:0.5px solid rgba(255,255,255,0.07);padding:56px 5% 32px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand p{font-size:13px;color:var(--text-muted);line-height:1.7;margin-top:12px;max-width:240px}
+.footer-col h4{font-size:12px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:var(--text-muted);text-decoration:none;margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{border-top:0.5px solid rgba(255,255,255,0.07);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:12px;color:var(--text-muted)}
+.footer-socials{display:flex;gap:12px}
+.footer-social{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:var(--pink);text-decoration:none;font-size:15px;transition:all .2s}
+.footer-social:hover{background:rgba(108,31,90,0.3);color:var(--white)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;gap:48px;text-align:center}
+  .hero-sub{margin-left:auto;margin-right:auto}
+  .hero-actions{justify-content:center}
+  .hero-proof{justify-content:center}
+  .phone-wrap{order:-1}
+  .pillars-grid{grid-template-columns:1fr}
+  .how-grid{grid-template-columns:1fr;gap:40px}
+  .how-screens{display:none}
+  .uc-grid{grid-template-columns:1fr 1fr}
+  .features-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .testimonials{grid-template-columns:1fr}
+  .arch-flow{gap:0}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+}
+@media(max-width:600px){
+  .uc-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .footer-top{grid-template-columns:1fr}
+  .nav-mobile-btn{display:block}
+  section{padding:64px 5%}
+  .arch-flow{flex-direction:column}
+  .arch-arrow{transform:rotate(90deg)}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">SPLI<span>Q</span></div>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#usecases">Use cases</a>
+      <a href="#features">Features</a>
+      <a href="#proof">Community</a>
+    </div>
+    <button class="nav-cta">Get started free</button>
+    <button class="nav-mobile-btn"><i class="ti ti-menu-2"></i></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow"><i class="ti ti-stars"></i> Group finance, finally fixed</div>
+      <h1 class="hero-h1">Stop chasing.<br>Start <span class="accent">Spliqing.</span></h1>
+      <p class="hero-tagline">Do it together.</p>
+      <p class="hero-sub">Whether you're planning a trip, splitting dinner, pooling for a gift, or funding a party — Spliq handles the money so you can handle the memories.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary"><i class="ti ti-rocket"></i> Get started free</a>
+        <a href="#how" class="btn-secondary"><i class="ti ti-play"></i> See how it works</a>
+      </div>
+      <div class="hero-proof">
+        <div class="proof-avatars">
+          <div class="proof-av">OA</div>
+          <div class="proof-av">TK</div>
+          <div class="proof-av">AM</div>
+          <div class="proof-av">FN</div>
+          <div class="proof-av" style="background:var(--gold);color:var(--dark)">+</div>
+        </div>
+        <p class="proof-text"><strong>12,000+</strong> groups already Spliqing together</p>
+      </div>
+    </div>
+    <div class="phone-wrap">
+      <div class="phone-glow"></div>
+      <div class="phone">
+        <div class="phone-screen">
+          <div class="p-sb">
+            <span class="p-sb-t">9:41</span>
+            <div style="display:flex;gap:4px;align-items:center">
+              <i class="ti ti-wifi" style="font-size:11px;color:rgba(255,255,255,0.5)"></i>
+              <i class="ti ti-battery-2" style="font-size:11px;color:rgba(255,255,255,0.5)"></i>
+            </div>
+          </div>
+          <div class="p-header">
+            <div class="p-logo">SPLIQ</div>
+            <div class="p-av">OA</div>
+          </div>
+          <div class="p-wallet">
+            <div class="p-wallet-label">WALLET BALANCE</div>
+            <div class="p-wallet-bal">₦124,500</div>
+            <div class="p-quick">
+              <div class="p-qb"><div class="p-qb-icon"><i class="ti ti-plus"></i></div><span>Add funds</span></div>
+              <div class="p-qb"><div class="p-qb-icon"><i class="ti ti-target"></i></div><span>New goal</span></div>
+              <div class="p-qb"><div class="p-qb-icon"><i class="ti ti-compass"></i></div><span>Discover</span></div>
+              <div class="p-qb"><div class="p-qb-icon"><i class="ti ti-history"></i></div><span>History</span></div>
+            </div>
+          </div>
+          <div class="p-sect">Active goals</div>
+          <div class="p-goal">
+            <div class="p-goal-row">
+              <span class="p-goal-name">Lagos trip 🌴</span>
+              <span class="p-goal-badge badge-gold" id="hero-badge">72% funded</span>
+            </div>
+            <div class="p-prog"><div class="p-prog-fill" id="hero-prog" style="width:72%"></div></div>
+            <div class="p-prog-meta">
+              <div class="p-avatars">
+                <div class="p-pav">OA</div><div class="p-pav">TK</div><div class="p-pav">AM</div><div class="p-pav" style="background:var(--gold);color:var(--dark)">+2</div>
+              </div>
+              <span id="hero-meta">₦72k of ₦100k</span>
+            </div>
+          </div>
+          <div class="p-goal">
+            <div class="p-goal-row">
+              <span class="p-goal-name">Boss gift 🎁</span>
+              <span class="p-goal-badge badge-gold">40% funded</span>
+            </div>
+            <div class="p-prog"><div class="p-prog-fill" style="width:40%"></div></div>
+            <div class="p-prog-meta">
+              <div class="p-avatars"><div class="p-pav">OA</div><div class="p-pav">FN</div><div class="p-pav" style="background:var(--gold);color:var(--dark)">+4</div></div>
+              <span>₦20k of ₦50k</span>
+            </div>
+          </div>
+          <div class="p-notif" id="hero-notif">
+            <div class="p-notif-icon"><i class="ti ti-check"></i></div>
+            <div class="p-notif-text"><strong>Tunde paid ₦20,000</strong><br>Lagos trip · 4 of 5 paid</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Discover <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Plan together <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Spliq the cost <span class="ticker-dot"></span></span>
+    <span class="ticker-item">No more IOUs <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Full transparency <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Auto refunds <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Pay for a friend <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Direct to merchant <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Discover <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Plan together <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Spliq the cost <span class="ticker-dot"></span></span>
+    <span class="ticker-item">No more IOUs <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Full transparency <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Auto refunds <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Pay for a friend <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Direct to merchant <span class="ticker-dot"></span></span>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section class="pillars" id="pillars">
+  <div class="section-inner">
+    <div class="section-eyebrow">The platform</div>
+    <h2 class="section-h2">Three things.<br>One platform.</h2>
+    <p class="section-sub">Spliq is not a bill-splitting app. It is a group finance platform built around the three things groups actually need.</p>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <div class="pillar-icon"><i class="ti ti-compass"></i></div>
+        <div class="pillar-title">Discover</div>
+        <p class="pillar-text">Set your budget and headcount. Spliq surfaces restaurants, hotels, activities, and experiences your group can actually afford — ranked by fit, rating, and proximity.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><i class="ti ti-users-group"></i></div>
+        <div class="pillar-title">Plan</div>
+        <p class="pillar-text">Create a group, define the goal, set the split. Whether it's a baecation, a team dinner, or a gift collection — Spliq brings your people and their money into one place.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><i class="ti ti-receipt-2"></i></div>
+        <div class="pillar-title">Spliq</div>
+        <p class="pillar-text">Everyone pays their share upfront into an escrow wallet. When everyone's in, money goes straight to the merchant. Leftovers come back to every wallet automatically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-inner">
+    <div class="section-eyebrow">How it works</div>
+    <h2 class="section-h2">From idea to settled<br>in four steps.</h2>
+    <div class="how-grid">
+      <div class="steps">
+        <div class="step active" onclick="setStep(0)">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Create a goal</div>
+            <div class="step-text">Name your goal — a trip, a dinner, a gift, a party fund, anything. Set the total amount and how you want to split it. Add your people by username or email.</div>
+          </div>
+        </div>
+        <div class="step" onclick="setStep(1)">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Everyone contributes</div>
+            <div class="step-text">Each member gets a push notification with their share. They fund from their personal wallet in one tap. The group ledger updates in real time for everyone to see.</div>
+          </div>
+        </div>
+        <div class="step" onclick="setStep(2)">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Pay the merchant directly</div>
+            <div class="step-text">Once fully funded, the host triggers payment. Funds go straight from the group wallet to the merchant's bank account. No cash. No middleman. No risk.</div>
+          </div>
+        </div>
+        <div class="step" onclick="setStep(3)">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Settle and refund</div>
+            <div class="step-text">Bill settled? Any excess is calculated and returned proportionally to every contributor's wallet automatically. Full breakdown sent to the group.</div>
+          </div>
+        </div>
+      </div>
+      <div class="how-visual">
+        <div class="how-screens">
+          <!-- Step 0 — create goal -->
+          <div class="how-screen active" id="hs0">
+            <div class="p-sb"><span class="p-sb-t">9:41</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+              <div style="font-size:14px;font-weight:700;color:#fff">Start a goal</div>
+              <i class="ti ti-arrow-left" style="font-size:16px;color:var(--pink)"></i>
+            </div>
+            <div style="font-size:9px;color:var(--pink);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px">Goal type</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+              <div style="background:rgba(244,196,48,0.12);border:1.5px solid var(--gold);border-radius:10px;padding:10px;text-align:center">
+                <i class="ti ti-plane" style="font-size:18px;color:var(--gold);display:block;margin-bottom:4px"></i>
+                <span style="font-size:10px;color:var(--gold);font-weight:500">Trip / outing</span>
+              </div>
+              <div style="background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px;text-align:center">
+                <i class="ti ti-gift" style="font-size:18px;color:var(--pink);display:block;margin-bottom:4px"></i>
+                <span style="font-size:10px;color:var(--pink)">Group gift</span>
+              </div>
+              <div style="background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px;text-align:center">
+                <i class="ti ti-confetti" style="font-size:18px;color:var(--pink);display:block;margin-bottom:4px"></i>
+                <span style="font-size:10px;color:var(--pink)">Party fund</span>
+              </div>
+              <div style="background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px;text-align:center">
+                <i class="ti ti-dots" style="font-size:18px;color:var(--pink);display:block;margin-bottom:4px"></i>
+                <span style="font-size:10px;color:var(--pink)">Other</span>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.14);border-radius:9px;padding:9px 11px;margin-bottom:8px">
+              <div style="font-size:9px;color:var(--pink);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:3px">Goal name</div>
+              <div style="font-size:11px;color:#fff">Lagos trip 🌴</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">
+              <div style="background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.14);border-radius:9px;padding:9px 11px">
+                <div style="font-size:9px;color:var(--pink);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:3px">Amount</div>
+                <div style="font-size:11px;color:#fff">₦100,000</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.14);border-radius:9px;padding:9px 11px">
+                <div style="font-size:9px;color:var(--pink);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:3px">Split</div>
+                <div style="font-size:11px;color:#fff">Equal</div>
+              </div>
+            </div>
+          </div>
+          <!-- Step 1 — contributions -->
+          <div class="how-screen" id="hs1">
+            <div class="p-sb"><span class="p-sb-t">9:41</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+              <div style="font-size:14px;font-weight:700;color:#fff">Lagos trip 🌴</div>
+            </div>
+            <div style="background:rgba(244,196,48,0.08);border:0.5px solid rgba(244,196,48,0.22);border-radius:12px;padding:12px;margin-bottom:14px">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+                <span style="font-size:9px;color:var(--pink)">Group wallet</span>
+                <span style="font-size:9px;font-weight:600;color:var(--gold)">72% funded</span>
+              </div>
+              <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:4px">₦72,000 <span style="font-size:11px;font-weight:400;color:var(--pink)">of ₦100k</span></div>
+              <div style="height:5px;background:rgba(255,255,255,0.1);border-radius:3px"><div style="width:72%;height:100%;border-radius:3px;background:var(--gold)"></div></div>
+            </div>
+            <div style="font-size:9px;color:var(--pink);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px">Contributions</div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+              <div style="width:28px;height:28px;border-radius:50%;background:var(--maroon);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--pink);font-weight:600">OA</div>
+              <div style="flex:1;font-size:11px;color:#fff">You</div>
+              <span style="font-size:9px;font-weight:500;background:rgba(126,227,168,0.2);border:0.5px solid rgba(126,227,168,0.3);color:var(--green);padding:2px 7px;border-radius:5px">Paid</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+              <div style="width:28px;height:28px;border-radius:50%;background:var(--maroon);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--pink);font-weight:600">TK</div>
+              <div style="flex:1;font-size:11px;color:#fff">Tunde K.</div>
+              <span style="font-size:9px;font-weight:500;background:rgba(126,227,168,0.2);border:0.5px solid rgba(126,227,168,0.3);color:var(--green);padding:2px 7px;border-radius:5px">Paid</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+              <div style="width:28px;height:28px;border-radius:50%;background:var(--maroon);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--pink);font-weight:600">AM</div>
+              <div style="flex:1;font-size:11px;color:#fff">Amaka M.</div>
+              <span style="font-size:9px;font-weight:500;background:rgba(126,227,168,0.2);border:0.5px solid rgba(126,227,168,0.3);color:var(--green);padding:2px 7px;border-radius:5px">Paid</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+              <div style="width:28px;height:28px;border-radius:50%;background:#3A1050;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--pink);font-weight:600">FN</div>
+              <div style="flex:1;font-size:11px;color:#fff">Femi N.</div>
+              <span style="font-size:9px;font-weight:500;background:rgba(244,196,48,0.2);border:0.5px solid rgba(244,196,48,0.3);color:var(--gold);padding:2px 7px;border-radius:5px">Pending</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:28px;height:28px;border-radius:50%;background:#3A1050;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--pink);font-weight:600">BB</div>
+              <div style="flex:1;font-size:11px;color:#fff">Bola B.</div>
+              <span style="font-size:9px;font-weight:500;background:rgba(225,50,50,0.2);border:0.5px solid rgba(225,50,50,0.3);color:var(--red);padding:2px 7px;border-radius:5px">Not paid</span>
+            </div>
+          </div>
+          <!-- Step 2 — pay merchant -->
+          <div class="how-screen" id="hs2">
+            <div class="p-sb"><span class="p-sb-t">9:41</span></div>
+            <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:14px">Friday dinner 🍽️</div>
+            <div style="background:rgba(126,227,168,0.1);border:0.5px solid rgba(126,227,168,0.25);border-radius:12px;padding:12px;margin-bottom:14px">
+              <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+                <span style="font-size:9px;color:var(--pink)">Group wallet</span>
+                <span style="font-size:9px;font-weight:600;color:var(--green)">✓ Fully funded</span>
+              </div>
+              <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:4px">₦75,000</div>
+              <div style="height:5px;background:rgba(255,255,255,0.1);border-radius:3px"><div style="width:100%;height:100%;border-radius:3px;background:var(--green)"></div></div>
+              <div style="font-size:9px;color:var(--green);margin-top:5px">All 5 members have paid ✓</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.11);border-radius:12px;padding:11px;margin-bottom:14px">
+              <div style="font-size:9px;color:var(--pink);margin-bottom:6px">Paying to</div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <div>
+                  <div style="font-size:12px;font-weight:600;color:#fff">The Yellow Chilli</div>
+                  <div style="font-size:10px;color:var(--pink);margin-top:2px">Lekki · Table for 5</div>
+                </div>
+                <div style="width:32px;height:32px;border-radius:9px;background:#4A1040;display:flex;align-items:center;justify-content:center">
+                  <i class="ti ti-tool-kitchen-2" style="font-size:14px;color:var(--pink)"></i>
+                </div>
+              </div>
+            </div>
+            <div style="background:var(--gold);border-radius:11px;padding:12px;text-align:center;font-size:12px;font-weight:700;color:var(--dark)">Send ₦75,000 to restaurant</div>
+            <div style="text-align:center;font-size:10px;color:var(--pink);margin-top:10px">Funds sent directly · No cash handled</div>
+          </div>
+          <!-- Step 3 — settled -->
+          <div class="how-screen" id="hs3">
+            <div class="p-sb"><span class="p-sb-t">9:41</span></div>
+            <div style="text-align:center;padding:16px 0 12px">
+              <div style="width:48px;height:48px;border-radius:50%;background:rgba(126,227,168,0.15);border:2px solid var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 10px">
+                <i class="ti ti-check" style="font-size:22px;color:var(--green)"></i>
+              </div>
+              <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:3px">Goal completed!</div>
+              <div style="font-size:10px;color:var(--pink)">Friday dinner · Yellow Chilli</div>
+            </div>
+            <div style="background:rgba(126,227,168,0.08);border:0.5px solid rgba(126,227,168,0.22);border-radius:12px;padding:12px;margin-bottom:12px">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:10px;color:var(--pink)">Total collected</span><span style="font-size:11px;color:#fff;font-weight:500">₦75,000</span></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:10px;color:var(--pink)">Paid to merchant</span><span style="font-size:11px;color:#fff;font-weight:500">₦68,500</span></div>
+              <div style="height:0.5px;background:rgba(126,227,168,0.2);margin-bottom:8px"></div>
+              <div style="display:flex;justify-content:space-between"><span style="font-size:10px;color:var(--green);font-weight:500">Excess returned</span><span style="font-size:12px;color:var(--green);font-weight:600">₦6,500</span></div>
+            </div>
+            <div style="background:rgba(244,196,48,0.08);border:0.5px solid rgba(244,196,48,0.2);border-radius:12px;padding:14px;text-align:center">
+              <div style="font-size:10px;color:var(--pink);margin-bottom:4px">Returned to your wallet</div>
+              <div style="font-size:24px;font-weight:700;color:var(--gold)">+₦1,300</div>
+              <div style="font-size:9px;color:var(--pink);margin-top:3px">₦6,500 ÷ 5 members · Automatic</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section class="usecases" id="usecases">
+  <div class="section-inner">
+    <div class="section-eyebrow">Any shared goal</div>
+    <h2 class="section-h2">Built for every group,<br>every goal.</h2>
+    <p class="section-sub">Spliq is not a dining app. It handles the financial layer for any situation where people pool money together.</p>
+    <div class="uc-grid">
+      <div class="uc-card">
+        <span class="uc-emoji">✈️</span>
+        <div class="uc-title">Trips & baecations</div>
+        <p class="uc-text">Road trips, vacations, weekend getaways, romantic stays. Set the group budget, discover where you can go, collect contributions, and pay hotels or activity providers directly.</p>
+        <div class="uc-tag"><i class="ti ti-map-pin" style="font-size:11px"></i> Discovery available</div>
+      </div>
+      <div class="uc-card">
+        <span class="uc-emoji">🍽️</span>
+        <div class="uc-title">Dining & events</div>
+        <p class="uc-text">Group dinners, brunches, concerts, club nights. Filter restaurants by your exact budget and headcount. Everyone pays before you go — no awkward bill moment at the table.</p>
+        <div class="uc-tag"><i class="ti ti-map-pin" style="font-size:11px"></i> Discovery available</div>
+      </div>
+      <div class="uc-card">
+        <span class="uc-emoji">🎁</span>
+        <div class="uc-title">Group gifts</div>
+        <p class="uc-text">Pooling for a colleague's farewell, a friend's birthday, or the boss's appreciation gift. No discovery needed — just set the amount, split it, and collect. Funds go to the buyer or a named recipient.</p>
+        <div class="uc-tag"><i class="ti ti-circle-check" style="font-size:11px"></i> No discovery needed</div>
+      </div>
+      <div class="uc-card">
+        <span class="uc-emoji">🎉</span>
+        <div class="uc-title">Party & event funds</div>
+        <p class="uc-text">Everyone chips in toward venue hire, decorations, catering. The host manages disbursement. Full transparency for every naira collected and spent — no one wonders where the money went.</p>
+        <div class="uc-tag"><i class="ti ti-circle-check" style="font-size:11px"></i> No discovery needed</div>
+      </div>
+      <div class="uc-card">
+        <span class="uc-emoji">💑</span>
+        <div class="uc-title">Couples & dating</div>
+        <p class="uc-text">One party can proactively cover the other's share before the outing starts — a gesture of commitment recorded in the app. Both parties see it. No awkward end-of-night conversation.</p>
+        <div class="uc-tag"><i class="ti ti-heart" style="font-size:11px"></i> Pay For Me feature</div>
+      </div>
+      <div class="uc-card">
+        <span class="uc-emoji">💼</span>
+        <div class="uc-title">Work & team outings</div>
+        <p class="uc-text">Team lunches, offsites, corporate retreats, manager gifts. Clean expense records, no single person carrying costs, full audit trail available for expense reporting.</p>
+        <div class="uc-tag"><i class="ti ti-receipt-2" style="font-size:11px"></i> Audit trail</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-inner">
+    <div class="section-eyebrow">Features</div>
+    <h2 class="section-h2">Everything your group<br>needs. Nothing it doesn't.</h2>
+    <div class="features-grid">
+      <div class="feat">
+        <div class="feat-icon gold"><i class="ti ti-lock"></i></div>
+        <div class="feat-title">Escrow-first payments</div>
+        <p class="feat-text">Funds are held safely in a group wallet until everyone has contributed. Payment to the merchant only happens when the group wallet is 100% funded. No partial payments. No IOUs.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon green"><i class="ti ti-eye"></i></div>
+        <div class="feat-title">Full financial transparency</div>
+        <p class="feat-text">Every group member sees the real-time ledger — who has paid, who hasn't, the exact amount in the wallet, and the full breakdown when the bill is settled. No more 'did you send it?'</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon pink"><i class="ti ti-heart-handshake"></i></div>
+        <div class="feat-title">Pay For Me</div>
+        <p class="feat-text">Any member can request a sponsor for their share. The sponsor funds it, it's recorded transparently on the ledger for all to see, and the group moves on. Perfect for dates, surprises, and gestures.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon gold"><i class="ti ti-refresh"></i></div>
+        <div class="feat-title">Automatic refunds</div>
+        <p class="feat-text">If the final bill comes in under what was collected, the excess is calculated and returned proportionally to every contributor's personal wallet instantly. No one needs to ask.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon maroon"><i class="ti ti-users-group"></i></div>
+        <div class="feat-title">Reusable groups</div>
+        <p class="feat-text">A group you create for tonight's dinner becomes the group for next month's trip and the Christmas gift collection. No rebuilding. The group is the permanent financial home for that social circle.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon green"><i class="ti ti-building-bank"></i></div>
+        <div class="feat-title">Direct to merchant</div>
+        <p class="feat-text">Funds go straight from the group wallet to the restaurant's or vendor's bank account. The host never handles cash. There is no middleman. Full accountability from first contribution to final payment.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon pink"><i class="ti ti-receipt-off"></i></div>
+        <div class="feat-title">Individual extras</div>
+        <p class="feat-text">If one member orders something additional outside the agreed group bill, it's tracked as a separate tab. The group bill is not affected. The final payment to the merchant remains a single clean transaction.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon gold"><i class="ti ti-compass"></i></div>
+        <div class="feat-title">Budget-aware discovery</div>
+        <p class="feat-text">Enter your total budget and headcount. Spliq filters and ranks venues, restaurants, and experiences that actually fit. No more choosing a place and then discovering it's out of reach.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT ARCHITECTURE -->
+<section class="arch" id="arch">
+  <div class="section-inner">
+    <div class="section-eyebrow">Payment architecture</div>
+    <h2 class="section-h2">Money moves cleanly.<br>Always.</h2>
+    <p class="section-sub">External payment providers are only involved at two points. Everything in between is instant internal ledger movement — zero fees, zero delays.</p>
+    <div class="arch-flow">
+      <div class="arch-node">
+        <div class="arch-icon user"><i class="ti ti-users-group"></i></div>
+        <div class="arch-label">Group members</div>
+        <div class="arch-sub">Top up via Paystack</div>
+      </div>
+      <div class="arch-arrow">
+        <div class="arch-arrow-line"></div>
+        <div class="arch-arrow-label">Internal transfer</div>
+      </div>
+      <div class="arch-node">
+        <div class="arch-icon wallet"><i class="ti ti-wallet"></i></div>
+        <div class="arch-label">Personal wallets</div>
+        <div class="arch-sub">Individual balances</div>
+      </div>
+      <div class="arch-arrow">
+        <div class="arch-arrow-line"></div>
+        <div class="arch-arrow-label">Instant · Free</div>
+      </div>
+      <div class="arch-node">
+        <div class="arch-icon escrow"><i class="ti ti-lock"></i></div>
+        <div class="arch-label">Group wallet</div>
+        <div class="arch-sub">Escrow until funded</div>
+      </div>
+      <div class="arch-arrow">
+        <div class="arch-arrow-line"></div>
+        <div class="arch-arrow-label">Paystack transfer</div>
+      </div>
+      <div class="arch-node">
+        <div class="arch-icon merchant"><i class="ti ti-building-store"></i></div>
+        <div class="arch-label">Merchant</div>
+        <div class="arch-sub">Direct bank payout</div>
+      </div>
+    </div>
+    <div class="arch-note">
+      <strong>Zero trust required.</strong> The host never touches the money. Funds are locked in escrow until the group wallet is 100% funded. Payment goes directly to the merchant's registered bank account via Paystack. Every movement is logged immutably.
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof" id="proof">
+  <div class="section-inner">
+    <div class="section-eyebrow">Community</div>
+    <h2 class="section-h2">Groups are already<br>doing it together.</h2>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">12k+</div><div class="stat-label">Active groups</div></div>
+      <div class="stat"><div class="stat-num">₦840m</div><div class="stat-label">Total spliqd</div></div>
+      <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Successful payouts</div></div>
+      <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">App store rating</div></div>
+    </div>
+    <div class="testimonials">
+      <div class="tcard">
+        <p class="tcard-text">"We've been using Spliq for every outing since February. Nobody chases anyone for money anymore. The group just works."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">SK</div>
+          <div><div class="tcard-name">Sade K.</div><div class="tcard-role">The Squad · Lagos</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <p class="tcard-text">"Used it for my boyfriend's birthday trip. Everyone paid before we left. No awkward wallet moments, no drama. Just vibes."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">AM</div>
+          <div><div class="tcard-name">Amaka M.</div><div class="tcard-role">Baecation planner · Abuja</div></div>
+        </div>
+      </div>
+      <div class="tcard">
+        <p class="tcard-text">"We collected ₦150k for our MD's farewell gift through Spliq. Eight of us, zero confusion. Every kobo accounted for."</p>
+        <div class="tcard-author">
+          <div class="tcard-av">TF</div>
+          <div><div class="tcard-name">Tunde F.</div><div class="tcard-role">Team lead · Lekki</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="cta-h2">Ready to stop chasing?</h2>
+  <p class="cta-sub">Join thousands of groups who've made money the least complicated part of doing things together.</p>
+  <div class="cta-actions">
+    <a href="#" class="btn-primary" style="font-size:16px;padding:16px 32px"><i class="ti ti-rocket"></i> Get started — it's free</a>
+    <a href="#" class="btn-secondary" style="font-size:16px;padding:16px 32px;border-color:rgba(255,255,255,0.3)"><i class="ti ti-brand-apple"></i> Download the app</a>
+  </div>
+  <p class="cta-note">No credit card required · Free for all groups · Available on iOS and Android</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo" style="font-size:22px">SPLI<span style="color:var(--gold)">Q</span></div>
+        <p>Group finance, reimagined. Discover. Plan. Spliq. Built for Africa, ready for the world.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#">How it works</a>
+        <a href="#">Discovery</a>
+        <a href="#">Bill splitting</a>
+        <a href="#">Wallet</a>
+        <a href="#">Pay For Me</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About us</a>
+        <a href="#">Blog</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Terms of service</a>
+        <a href="#">Privacy policy</a>
+        <a href="#">Cookie policy</a>
+        <a href="#">Security</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Spliq. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social"><i class="ti ti-brand-instagram"></i></a>
+        <a href="#" class="footer-social"><i class="ti ti-brand-x"></i></a>
+        <a href="#" class="footer-social"><i class="ti ti-brand-tiktok"></i></a>
+        <a href="#" class="footer-social"><i class="ti ti-brand-linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Hero phone animation — contribution comes in
+(function(){
+  const notif = document.getElementById('hero-notif');
+  const prog = document.getElementById('hero-prog');
+  const badge = document.getElementById('hero-badge');
+  const meta = document.getElementById('hero-meta');
+  let triggered = false;
+
+  function runAnim(){
+    if(triggered) return;
+    triggered = true;
+    setTimeout(()=>{
+      notif.classList.add('show');
+      setTimeout(()=>{
+        prog.style.width = '92%';
+        badge.textContent = '92% funded';
+        meta.textContent = '₦92k of ₦100k';
+      }, 600);
+      setTimeout(()=>{ notif.classList.remove('show'); }, 3200);
+      setTimeout(()=>{ triggered = false; }, 6000);
+    }, 1800);
+  }
+
+  // Repeat every 7s
+  setInterval(()=>{ triggered = false; runAnim(); }, 7000);
+  setTimeout(runAnim, 1000);
+})();
+
+// How it works — step switcher
+const steps = document.querySelectorAll('.step');
+const screens = document.querySelectorAll('.how-screen');
+let autoTimer;
+
+function setStep(i){
+  steps.forEach((s,idx)=> s.classList.toggle('active', idx===i));
+  screens.forEach((s,idx)=> s.classList.toggle('active', idx===i));
+  clearInterval(autoTimer);
+  autoTimer = setInterval(()=>{ setStep((i+1)%4); i=(i+1)%4; }, 4000);
+}
+
+autoTimer = setInterval(()=>{
+  let curr = Array.from(steps).findIndex(s=>s.classList.contains('active'));
+  setStep((curr+1)%4);
+}, 4000);
+
+// Nav scroll effect
+const nav = document.querySelector('nav');
+window.addEventListener('scroll',()=>{
+  nav.style.borderBottomColor = window.scrollY > 20 ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.07)';
+});
+</script>
+</body>
+</html>
